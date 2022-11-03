@@ -1,4 +1,8 @@
-const io = require("socket.io")(8900, {
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+const port = process.env.PORT || 8900;
+
+const io = require("socket.io")(port, {
   cors: {
     origin: "*" || "http://localhost:3001", //It is address of our react application
   },
