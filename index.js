@@ -36,7 +36,7 @@ const removeUser = (socketId) => {
 
 const getUser = (userId) => {
   console.log(users);
-  return users.find((user) => user.userId === userId[0]);
+  return users.find((user) => user.userId === userId);
 };
 
 const getMechanic = (userId) => {
