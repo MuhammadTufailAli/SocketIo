@@ -91,7 +91,7 @@ io.on("connection", (socket) => {
     ({ senderId, receiverId, latitude, longitude, price }) => {
       console.log("sendToCustomer IS CALLEDDDDDDDD");
       if (receiverId) {
-        const user = getMechanic(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+        const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
         //ab us user ki socketId sa hum usa sender ka message send kar da ga
         //hum senderId and text send kara ga
 
