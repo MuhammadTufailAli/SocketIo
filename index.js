@@ -1,6 +1,6 @@
 const io = require("socket.io")(8900, {
   cors: {
-    origin: "https://safe-fjord-15300.herokuapp.com" || "http://localhost:3001", //It is address of our react application
+    origin: "*" || "http://localhost:3001", //It is address of our react application
   },
 });
 
