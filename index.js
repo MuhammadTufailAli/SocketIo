@@ -39,10 +39,6 @@ const getUser = (userId) => {
   return users.find((user) => user.userId === userId);
 };
 
-const getMechanic = (userId) => {
-  return mechanic.find((user) => user.userId === userId[0]);
-};
-
 io.on("connection", (socket) => {
   console.log("A user connected");
   console.log(socket.connected);
@@ -84,6 +80,27 @@ io.on("connection", (socket) => {
       });
     }
   });
+
+  //Request send my customer and received by All Mechanics
+
+  socket.on(
+    "SendCustomerNotificationToAllMechanics",
+    ({ senderId, price, latitude, longitude, Location }) => {
+      console.log("Customer send Request to all mechanics");
+
+      // const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+      //ab us user ki socketId sa hum usa sender ka message send kar da ga
+      //hum senderId and text send kara ga
+
+      io.emit("getNotificationFromMechanic", {
+        senderId,
+        price,
+        latitude,
+        longitude,
+        Location,
+      });
+    }
+  );
 
   //Get message from user
   socket.on(
