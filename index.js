@@ -85,7 +85,15 @@ io.on("connection", (socket) => {
 
   socket.on(
     "SendCustomerNotificationToAllMechanics",
-    ({ senderId, price, latitude, longitude, Location, Description }) => {
+    ({
+      price,
+      latitude,
+      longitude,
+      Description,
+      refOfCustomer,
+      Location,
+      AcceptedByUser,
+    }) => {
       console.log("Customer send Request to all mechanics");
 
       // const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
@@ -93,12 +101,14 @@ io.on("connection", (socket) => {
       //hum senderId and text send kara ga
 
       io.emit("getNotificationFromMechanic", {
-        senderId,
         price,
         latitude,
         longitude,
-        Location,
+
         Description,
+        refOfCustomer,
+        Location,
+        AcceptedByUser,
       });
     }
   );
