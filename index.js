@@ -81,7 +81,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  //Request send my customer and received by All Mechanics
+  //Request send by customer and received by All Mechanics
 
   socket.on(
     "SendCustomerNotificationToAllMechanics",
@@ -113,6 +113,19 @@ io.on("connection", (socket) => {
       });
     }
   );
+
+  //Customer notification to be deleted
+  socket.on("deleteCustomerNotification", ({ id }) => {
+    console.log("Id to be deleted is " + _id);
+
+    // const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+    //ab us user ki socketId sa hum usa sender ka message send kar da ga
+    //hum senderId and text send kara ga
+
+    io.emit("getIdToDeleteNotification", {
+      id,
+    });
+  });
 
   //Get message from user
   socket.on(
