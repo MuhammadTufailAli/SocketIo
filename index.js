@@ -86,6 +86,7 @@ io.on("connection", (socket) => {
   socket.on(
     "SendCustomerNotificationToAllMechanics",
     ({
+      _id,
       price,
       latitude,
       longitude,
@@ -94,17 +95,17 @@ io.on("connection", (socket) => {
       Location,
       AcceptedByUser,
     }) => {
-      console.log("Customer send Request to all mechanics");
+      console.log("Id of notification is " + _id);
 
       // const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
       //ab us user ki socketId sa hum usa sender ka message send kar da ga
       //hum senderId and text send kara ga
 
       io.emit("getNotificationFromMechanic", {
+        _id,
         price,
         latitude,
         longitude,
-
         Description,
         refOfCustomer,
         Location,
