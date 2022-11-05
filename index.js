@@ -132,6 +132,7 @@ io.on("connection", (socket) => {
     "SendResponseTomechanicOffer",
     ({ response, receiverId, senderId }) => {
       console.log("Customer has ", response, " mechanic offer");
+      console.log(receiverId);
       if (receiverId) {
         const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
         //ab us user ki socketId sa hum usa sender ka message send kar da ga
@@ -141,6 +142,7 @@ io.on("connection", (socket) => {
 
         io.to(user?.socketId).emit("getResponseFromCustomerTomechanicOffer", {
           response,
+
           senderId,
         });
       }
