@@ -141,7 +141,6 @@ io.on("connection", (socket) => {
 
         io.to(user?.socketId).emit("getResponseFromCustomerTomechanicOffer", {
           response,
-          receiverId,
           senderId,
         });
       }
