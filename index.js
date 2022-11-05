@@ -127,7 +127,28 @@ io.on("connection", (socket) => {
     });
   });
 
-  //Get message from user
+  //Send if customer accept or reject mechanic offer
+  socket.on(
+    "SendResponseTomechanicOffer",
+    ({ response, receiverId, senderId }) => {
+      console.log("Customer has ", response, " mechanic offer");
+      if (receiverId) {
+        const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+        //ab us user ki socketId sa hum usa sender ka message send kar da ga
+        //hum senderId and text send kara ga
+
+        console.log("The User is " + user);
+
+        io.to(user?.socketId).emit("getResponseFromCustomerTomechanicOffer", {
+          response,
+          receiverId,
+          senderId,
+        });
+      }
+    }
+  );
+
+  //Send notification from mechanic to customer
   socket.on(
     "sendToCustomer",
     ({ senderId, receiverId, latitude, longitude, price }) => {
