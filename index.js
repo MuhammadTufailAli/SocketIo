@@ -191,6 +191,22 @@ io.on("connection", (socket) => {
     }
   );
 
+  //Tell customer that mechanic reached
+  socket.on("sendIamReached", ({ senderId, receiverId }) => {
+    console.log("I am reached customer");
+    if (receiverId) {
+      const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+      //ab us user ki socketId sa hum usa sender ka message send kar da ga
+      //hum senderId and text send kara ga
+
+      console.log("The User is " + user);
+
+      io.to(user?.socketId).emit("getIamReached", {
+        senderId,
+      });
+    }
+  });
+
   //If a user is discoonect or logout then we will remove this user from online users
   socket.on("disconnect", () => {
     console.log("A user is disconnected");
