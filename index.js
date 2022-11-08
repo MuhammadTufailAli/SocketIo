@@ -208,20 +208,13 @@ io.on("connection", (socket) => {
   });
 
   //Sending Updated price tomechanic
-  socket.on("sendUpdatedPrice", ({ senderId, receiverId, price }) => {
+  socket.on("sendUpdatedPrice", ({ senderId, price }) => {
     console.log("I am reached customer");
-    if (receiverId) {
-      const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
-      //ab us user ki socketId sa hum usa sender ka message send kar da ga
-      //hum senderId and text send kara ga
 
-      console.log("The User is " + user);
-
-      io.to(user?.socketId).emit("getUpdatedPrice", {
-        senderId,
-        price,
-      });
-    }
+    io.emit("getUpdatedPrice", {
+      senderId,
+      price,
+    });
   });
 
   //If a user is discoonect or logout then we will remove this user from online users
