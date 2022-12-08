@@ -34,10 +34,10 @@ const removeUser = (socketId) => {
   console.log("After delete users are" + users);
 };
 
-const getUserForMessage = (userId) => {
-  console.log(userId[0]);
-  return users.find((user) => user.userId === userId[0]);
-};
+// const getUserForMessage = (userId) => {
+//   console.log(userId[0]);
+//   return users.find((user) => user.userId === userId[0]);
+// };
 const getUser = (userId) => {
   console.log(userId);
   return users.find((user) => user.userId === userId);
@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
   //Get message from user
   socket.on("sendMessage", ({ senderId, receiverId, text }) => {
     if (receiverId) {
-      const user = getUserForMessage(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+      const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
       //ab us user ki socketId sa hum usa sender ka message send kar da ga
       //hum senderId and text send kara ga
       console.log(user);
