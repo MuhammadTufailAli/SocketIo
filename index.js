@@ -4,7 +4,7 @@ const port = process.env.PORT || 8900;
 
 const io = require("socket.io")(port, {
   cors: {
-    origin: "*" || "http://localhost:3001", //It is address of our react application
+    origin: "*", //It is address of our react application || "http://localhost:3001"
   },
 });
 
