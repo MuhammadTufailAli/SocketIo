@@ -131,6 +131,18 @@ io.on("connection", (socket) => {
     });
   });
 
+  //Customer notification to be deleted when one mechanic req is accepted
+  socket.on("deleteCustomerNotification2", ({ id }) => {
+    console.log("Mechanic id is " + id);
+
+    // const user = getUser(receiverId); //Is sa huma pata chl gaya kis banda ko message send karna ha
+    //ab us user ki socketId sa hum usa sender ka message send kar da ga
+    //hum senderId and text send kara ga
+
+    io.emit("getIdToDeleteNotification2", {
+      id,
+    });
+  });
   //Send if customer accept or reject mechanic offer
   socket.on(
     "SendResponseTomechanicOffer",
