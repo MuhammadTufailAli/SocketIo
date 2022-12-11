@@ -233,6 +233,14 @@ io.on("connection", (socket) => {
     });
   });
 
+  //Logout
+  socket.on("Logout", (userId) => {
+    if (userId) {
+      console.log("A user is disconnected using Logout");
+      removeUser(socket.id);
+    }
+  });
+
   //If a user is discoonect or logout then we will remove this user from online users
   socket.on("disconnect", () => {
     console.log("A user is disconnected");
