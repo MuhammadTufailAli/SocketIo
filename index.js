@@ -235,9 +235,13 @@ io.on("connection", (socket) => {
 
   //Logout
   socket.on("Logout", (userId) => {
+    console.log("Logout is called");
+
     if (userId) {
       console.log("A user is disconnected using Logout");
       removeUser(socket.id);
+
+      io.emit("getUsers", users);
     }
   });
 
